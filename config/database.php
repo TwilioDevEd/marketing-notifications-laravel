@@ -1,5 +1,10 @@
 <?php
 
+$database = env('DB_DATABASE');
+if ($app->environment('testing')) {
+    $database = env('DB_DATABASE') . '_test';
+}
+
 return [
 
     /*
@@ -67,7 +72,7 @@ return [
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
+            'database' => $database,
             'username' => env('DB_USERNAME', ''),
             'password' => env('DB_PASSWORD', ''),
             'charset'  => 'utf8',
