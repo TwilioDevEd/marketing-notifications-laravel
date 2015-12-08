@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get(
+    '/subscribers/register',
+    ['uses' => 'SubscribersController@register',
+    'as' => 'subscribers.register']
+);
