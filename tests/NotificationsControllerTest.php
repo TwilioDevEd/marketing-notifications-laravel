@@ -12,9 +12,9 @@ class NotificationsControllerTest extends TestCase
 
     public function testCreate()
     {
-        $response = $this->call('GET', route('notifications.create'));
+        $this->call('GET', route('notifications.create'));
 
-        $this->assertEquals(200, $response->status());
+        $this->assertResponseOk();
     }
 
     public function testDeliverNotifications()
@@ -44,7 +44,9 @@ class NotificationsControllerTest extends TestCase
            route('notifications.send'),
            ['message' => 'message', '_token' => csrf_token()]
        );
-       echo $response->getContent();
+
+       $this->assertResponseStatus(302);
+       $this->assertRedirectedToRoute('notifications.create');
     }
 
     private function createSubscriber()

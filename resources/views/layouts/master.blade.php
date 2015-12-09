@@ -26,6 +26,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
+            @if (session('status') !== null)
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ session('status') }}
+                </div>
+            @endif
             @yield('content')
         </div>
       </div><!--/row-->
@@ -35,5 +41,7 @@
           <a href="http://www.twilio.com">@twilio</a>
       </footer>
     </div> <!-- /container -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -30,18 +30,22 @@ class NotificationsController extends Controller
 
     public function send(Request $request)
     {
+        $this->validate($request, ['message' => 'required']);
+
         $message  = $request->input('message');
         $imageUrl = $request->input('imageUrl');
 
         $activeSubscribers = Subscriber::active()->get();
         foreach ($activeSubscribers as $subscriber)
         {
-            $this->sendMessage(
-                $subscriber->phoneNumber,
-                $message,
-                $imageUrl
-            );
+            $this->sendMessage($subscriber->phoneNumber, $message, $imageUrl);
         }
+
+        $request
+            ->session()
+            ->flash('status', 'Messages on their way!');
+
+        return redirect()->route('notifications.create');
     }
 
     private function sendMessage($phoneNumber, $message, $imageUrl)

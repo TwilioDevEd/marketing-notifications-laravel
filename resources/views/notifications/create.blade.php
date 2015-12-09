@@ -7,6 +7,7 @@
             {!! Form::label('message') !!}
             {!! Form::text('message', '',
                 ['class' => 'form-control', 'placeholder' => 'New things are happening!']) !!}
+        <div class="text-danger">{{ $errors->first('message') }}</div>
         </div>
         <div class="form-group">
             {!! Form::label('Image URL') !!}
