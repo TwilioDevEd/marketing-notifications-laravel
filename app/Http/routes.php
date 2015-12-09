@@ -20,3 +20,9 @@ Route::get(
     ['uses' => 'SubscribersController@register',
     'as' => 'subscribers.register']
 );
+
+Route::get(
+    '/notifications/create',
+    ['uses' => 'NotificationsController@create',
+    'as' => 'notifications.create']
+);
