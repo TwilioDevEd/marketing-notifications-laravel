@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Subscriber;
+
+use Services_Twilio;
 
 class NotificationsController extends Controller
 {
+    protected $client;
+
+    public function __construct(Services_Twilio $client) {
+        $this->client = $client;
+    }
+
     /**
      * Show the form for creating a notification.
      *
@@ -17,5 +26,32 @@ class NotificationsController extends Controller
     public function create()
     {
         return view('notifications.create');
+    }
+
+    public function send(Request $request)
+    {
+        $message  = $request->input('message');
+        $imageUrl = $request->input('imageUrl');
+
+        $activeSubscribers = Subscriber::active()->get();
+        foreach ($activeSubscribers as $subscriber)
+        {
+            $this->sendMessage(
+                $subscriber->phoneNumber,
+                $message,
+                $imageUrl
+            );
+        }
+    }
+
+    private function sendMessage($phoneNumber, $message, $imageUrl)
+    {
+        $twilioPhoneNumber = config('services.twilio')['phoneNumber'];
+        $this->client->account->messages->sendMessage(
+            $twilioPhoneNumber,
+            $phoneNumber,
+            $message,
+            $imageUrl ? array($imageUrl) : null
+        );
     }
 }

@@ -26,3 +26,9 @@ Route::get(
     ['uses' => 'NotificationsController@create',
     'as' => 'notifications.create']
 );
+
+Route::post(
+    '/notifications/send',
+    ['uses' => 'NotificationsController@send',
+    'as' => 'notifications.send']
+);
