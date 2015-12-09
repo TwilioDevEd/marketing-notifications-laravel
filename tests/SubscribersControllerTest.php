@@ -14,7 +14,7 @@ class SubscribersControllerTest extends TestCase
         $this->assertCount(0, Subscriber::all());
 
         $response = $this->call(
-            'GET',
+            'POST',
             route('subscribers.register'),
             ['From' => '555-5555', 'Body' => '']
         );
@@ -30,7 +30,7 @@ class SubscribersControllerTest extends TestCase
         $this->assertCount(1, Subscriber::all());
 
         $response = $this->call(
-            'GET',
+            'POST',
             route('subscribers.register'),
             ['From' => '555-5555', 'Body' => 'subscribe']
         );
@@ -46,7 +46,7 @@ class SubscribersControllerTest extends TestCase
         $this->assertCount(1, Subscriber::all());
 
         $response = $this->call(
-            'GET',
+            'POST',
             route('subscribers.register'),
             ['From' => '555-5555', 'Body' => 'unsubscribe']
         );
@@ -62,7 +62,7 @@ class SubscribersControllerTest extends TestCase
         $this->assertCount(1, Subscriber::all());
 
         $response = $this->call(
-            'GET',
+            'POST',
             route('subscribers.register'),
             ['From' => '555-5555', 'Body' => 'command']
         );

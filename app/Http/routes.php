@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get(
+Route::post(
     '/subscribers/register',
     ['uses' => 'SubscribersController@register',
     'as' => 'subscribers.register']
