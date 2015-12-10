@@ -73,7 +73,7 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
    $ php artisan serve
    ```
 
-10. Check it out at [http://localhost:8000/notifications/create](http://localhost:8000/notifications/create)
+10. Check it out at [http://localhost:8000](http://localhost:8000)
 
 ## Run the tests
 1. Create a database.
