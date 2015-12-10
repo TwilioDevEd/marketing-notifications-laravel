@@ -14,7 +14,8 @@ class NotificationsController extends Controller
 {
     protected $client;
 
-    public function __construct(Services_Twilio $client) {
+    public function __construct(Services_Twilio $client)
+    {
         $this->client = $client;
     }
 
@@ -36,8 +37,7 @@ class NotificationsController extends Controller
         $imageUrl = $request->input('imageUrl');
 
         $activeSubscribers = Subscriber::active()->get();
-        foreach ($activeSubscribers as $subscriber)
-        {
+        foreach ($activeSubscribers as $subscriber) {
             $this->sendMessage($subscriber->phoneNumber, $message, $imageUrl);
         }
 

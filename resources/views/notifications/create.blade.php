@@ -2,7 +2,6 @@
 
 @section('content')
     {!! Form::open(['url' => route('notifications.send')]) !!}
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             {!! Form::label('message') !!}
             {!! Form::text('message', '',

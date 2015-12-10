@@ -13,7 +13,9 @@ use Services_Twilio_Twiml;
 class SubscribersController extends Controller
 {
     /**
-     * Manage subscription for a subscriber.
+     * Manage the subscription for a subscriber.
+     *
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,8 +35,7 @@ class SubscribersController extends Controller
     private function createMessage($phone, $message)
     {
         $subscriber = Subscriber::where('phone_number', $phone)->first();
-        if ($subscriber)
-        {
+        if ($subscriber) {
             return $this->generateOutputMessage($subscriber, $message);
         }
 
@@ -44,15 +45,15 @@ class SubscribersController extends Controller
 
         $subscriber->save();
 
-        return 'Thanks for contacting TWBC! Text \'subscribe\' if you would to receive updates via text message.';
+        return trans('subscription.thanks');
     }
 
-    private function generateOutputMessage($subscriber, $message) {
+    private function generateOutputMessage($subscriber, $message)
+    {
         $subscribe   = 'subscribe';
 
-        if (!$this->isValidCommand($message))
-        {
-            return 'Sorry, we don\'t recognize that command. Available commands are: \'subscribe\' or \'unsubscribe\'.';
+        if (!$this->isValidCommand($message)) {
+            return trans('subscription.unavailable_command');
         }
 
         $isSubscribed = starts_with($message, $subscribe);
@@ -60,8 +61,8 @@ class SubscribersController extends Controller
         $subscriber->save();
 
         return $isSubscribed
-            ? 'You are now subscribed for updates.'
-            : 'You have unsubscribed from notifications. Test \'subscribe\' to start receieving updates again';
+            ? trans('subscription.subscribed_confirmation')
+            : trans('subscription.unsubscribed_confirmation');
     }
 
     private function isValidCommand($command)
