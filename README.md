@@ -53,7 +53,7 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
    $ cp .env.example .env
    ```
 
-You'll need to set `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER` in the .env file. 
+  You'll need to set `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, 'TWILIO_ACCOUNT_SID', "TWILIO_AUTH_TOKEN', and 'TWILIO_PHONE_NUMBER' in your .env file. 
 
 7. Generate an `APP_KEY`:
 
