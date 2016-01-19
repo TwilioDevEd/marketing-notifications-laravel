@@ -75,7 +75,7 @@
     they want to receive messages from us.
 
     And that's all we want at this step! We've created a `Subscriber` model to
-    keep track of the people that want our messages, and saved them in the
+    keep track of the people that want our messages and saved them in the
     database when they text us for the first time.
 
 .step(
@@ -87,11 +87,11 @@
 
       We want to provide the user with two SMS commands to manage their
       subscription status: `subscribe` and `unsubscribe`.  These commands will
-      toggle a boolean flag for their `Subscriber` record in the database, and
+      toggle a boolean flag for their `Subscriber` record in the database and
       will determine whether or not they receive messages from our marketing
       campaign. Because we're not jerks, we don't opt them in automatically -
       rather, we have them confirm that they want to receive messages from us
-      first.
+      or not.
 
       To make this happen, we will need to update the controller logic which
       handles the incoming text message to do a couple things:
