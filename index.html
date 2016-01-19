@@ -38,7 +38,7 @@ provide the right model.</p>
 <li>The <code>phone_number</code> will allow the application to know where to send the
 notifications.</li>
 <li><code>subscribed</code> let the application to identify which subscribers are
-active, only an active subscriber will receive notifications.</li>
+active. Only an active subscriber will receive notifications.</li>
 </ul>
 <p><strong>See Also</strong></p>
 <ul>
@@ -48,7 +48,7 @@ active, only an active subscriber will receive notifications.</li>
 <p>This is the endpoint that will be called every time our application receives
 a message.</p>
 <p>It relies on a <code>createMessage</code> method that produces the message that
-will be returned to the sender. It hides the complexity behind creating new
+will be returned to the sender. This hides the complexity behind creating new
 subscribers.</p>
 <p><strong>See Also:</strong></p>
 <ul>
@@ -62,16 +62,16 @@ request</a>. Now, we need to find a
 respond with a message asking them to text &quot;<em>subscribe</em>&quot; to confirm that
 they want to receive messages from us.</p>
 <p>And that&#39;s all we want at this step! We&#39;ve created a <code>Subscriber</code> model to
-keep track of the people that want our messages, and saved them in the
+keep track of the people that want our messages and saved them in the
 database when they text us for the first time.</p>
 </div><div data-title="Manage Subscriptions" data-file="app/Http/Controllers/SubscribersController.php" data-highlight="51-71" class="step"><h2 id="manage-subscriptions">Manage Subscriptions</h2>
 <p>  We want to provide the user with two SMS commands to manage their
   subscription status: <code>subscribe</code> and <code>unsubscribe</code>.  These commands will
   toggle a boolean flag for their <code>Subscriber</code> record in the database, and
-  will determine whether or not they receive messages from our marketing
+  will determine whether or not they received messages from our marketing
   campaign. Because we&#39;re not jerks, we don&#39;t opt them in automatically -
   rather, we have them confirm that they want to receive messages from us
-  first.</p>
+  or not.</p>
 <p>  To make this happen, we will need to update the controller logic which
   handles the incoming text message to do a couple things:</p>
 <ul>
