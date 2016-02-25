@@ -50,7 +50,7 @@ class SubscribersController extends Controller
 
     private function generateOutputMessage($subscriber, $message)
     {
-        $subscribe   = 'subscribe';
+        $subscribe   = 'add';
 
         if (!$this->isValidCommand($message)) {
             return trans('subscription.unavailable_command');
@@ -67,6 +67,6 @@ class SubscribersController extends Controller
 
     private function isValidCommand($command)
     {
-        return starts_with($command, 'subscribe') || starts_with($command, 'unsubscribe');
+        return starts_with($command, 'add') || starts_with($command, 'remove');
     }
 }
