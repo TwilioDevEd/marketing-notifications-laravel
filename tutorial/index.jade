@@ -1,4 +1,4 @@
-.step(data-title='Introduction', data-file='app/Http/Controllers/SubscribersController.php')
+.step(data-title='Introduction', data-file='app/Http/routes.php')
   :markdown
     ## SMS and MMS Marketing Notifications
 
@@ -127,7 +127,7 @@
 .step(
   data-title='Send SMS or MMS Notifications',
   data-file='app/Http/Controllers/NotificationsController.php'
-  data-highlight='51-60')
+  data-highlight='51-66')
   :markdown
     ## Send SMS or MMS Notifications
 
@@ -136,10 +136,10 @@
     SID and auth token), which can be found [in the account
     portal](/user/account).
 
-    Next all we need to do is call `sendMessage` on the
-    `client->account->messages` object in order to send our message. The Twilio
-    Message API call requires a '$from' and '$to' parameter, a '$body' and an
-    array of '$mediaUrls', the last one is optional.
+    Next all we need to do is call `create` on the
+    `client->messages` object in order to send our message. The Twilio
+    Message API call requires a '$to' parameter and an
+    array of containing a `from` number, the message `body` and `mediaUrl`, the last one is optional.
 
     **See Also**
     * [Twilio PHP: Send a SMS](//twilio-php.readthedocs.org/en/latest/#send-an-sms)
