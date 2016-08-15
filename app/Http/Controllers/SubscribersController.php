@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Subscriber;
 
-use Services_Twilio_Twiml;
+use Twilio\Twiml;
 
 class SubscribersController extends Controller
 {
@@ -25,7 +25,7 @@ class SubscribersController extends Controller
         $message       = $request->input('Body');
         $outputMessage = $this->createMessage($phoneNumber, $message);
 
-        $response = new Services_Twilio_Twiml;
+        $response = new Twiml();
         $response->message($outputMessage);
 
         return response($response)
@@ -50,7 +50,8 @@ class SubscribersController extends Controller
 
     private function generateOutputMessage($subscriber, $message)
     {
-        $subscribe   = 'add';
+        $subscribe = 'add';
+        $message = trim(strtolower($message));
 
         if (!$this->isValidCommand($message)) {
             return trans('subscription.unavailable_command');
