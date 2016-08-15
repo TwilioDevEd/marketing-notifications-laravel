@@ -32,7 +32,7 @@ class SubscribersControllerTest extends TestCase
         $response = $this->call(
             'POST',
             route('subscribers.register'),
-            ['From' => '555-5555', 'Body' => 'subscribe']
+            ['From' => '555-5555', 'Body' => 'add']
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());
@@ -48,7 +48,7 @@ class SubscribersControllerTest extends TestCase
         $response = $this->call(
             'POST',
             route('subscribers.register'),
-            ['From' => '555-5555', 'Body' => 'unsubscribe']
+            ['From' => '555-5555', 'Body' => 'remove']
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());

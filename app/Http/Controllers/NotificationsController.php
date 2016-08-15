@@ -8,13 +8,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Subscriber;
 
-use Services_Twilio;
+use Twilio\Rest\Client;
 
 class NotificationsController extends Controller
 {
     protected $client;
 
-    public function __construct(Services_Twilio $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }
@@ -48,14 +48,20 @@ class NotificationsController extends Controller
         return redirect()->route('notifications.create');
     }
 
-    private function sendMessage($phoneNumber, $message, $imageUrl)
+    private function sendMessage($phoneNumber, $message, $imageUrl = null)
     {
         $twilioPhoneNumber = config('services.twilio')['phoneNumber'];
-        $this->client->account->messages->sendMessage(
-            $twilioPhoneNumber,
+        $messageParams = array(
+            'from' => $twilioPhoneNumber,
+            'body' => $message
+        );
+        if ($imageUrl) {
+            $messageParams['mediaUrl'] = $imageUrl;
+        }
+
+        $this->client->messages->create(
             $phoneNumber,
-            $message,
-            $imageUrl ? array($imageUrl) : null
+            $messageParams
         );
     }
 }

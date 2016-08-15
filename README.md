@@ -30,16 +30,16 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 
 2. Clone this repository and `cd` into it.
 
-   ```
-   git clone git@github.com:TwilioDevEd/marketing-notifications-laravel.git
-   cd marketing-notifications-laravel
+   ```bash
+   $ git clone git@github.com:TwilioDevEd/marketing-notifications-laravel.git
+   $ cd marketing-notifications-laravel
    ```
 
 3. Install the application's dependencies with [Composer](https://getcomposer.org/).
 
-  ```bash
-  $ composer install
-  ```
+   ```bash
+   $ composer install
+   ```
 
 4. The application uses PostgreSQL as the persistence layer. If you don't have it already, you should install it. The easiest way is by using [Postgres.app](http://postgresapp.com/).
 
