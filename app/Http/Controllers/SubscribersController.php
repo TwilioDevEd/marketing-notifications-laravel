@@ -35,17 +35,15 @@ class SubscribersController extends Controller
     private function createMessage($phone, $message)
     {
         $subscriber = Subscriber::where('phone_number', $phone)->first();
-        if ($subscriber) {
-            return $this->generateOutputMessage($subscriber, $message);
+        if (!$subscriber) {
+            $subscriber = new Subscriber;
+            $subscriber->phoneNumber = $phone;
+            $subscriber->subscribed  = false;
+
+            $subscriber->save();
         }
 
-        $subscriber = new Subscriber;
-        $subscriber->phoneNumber = $phone;
-        $subscriber->subscribed  = false;
-
-        $subscriber->save();
-
-        return trans('subscription.thanks');
+        return $this->generateOutputMessage($subscriber, $message);
     }
 
     private function generateOutputMessage($subscriber, $message)
@@ -54,7 +52,7 @@ class SubscribersController extends Controller
         $message = trim(strtolower($message));
 
         if (!$this->isValidCommand($message)) {
-            return trans('subscription.unavailable_command');
+            return $this->messageText();
         }
 
         $isSubscribed = starts_with($message, $subscribe);
@@ -62,12 +60,28 @@ class SubscribersController extends Controller
         $subscriber->save();
 
         return $isSubscribed
-            ? trans('subscription.subscribed_confirmation')
-            : trans('subscription.unsubscribed_confirmation');
+            ? $this->messageText('add');
+            : $this->messageText('remove');
     }
 
     private function isValidCommand($command)
     {
         return starts_with($command, 'add') || starts_with($command, 'remove');
+    }
+    
+    private function messageText($messageType = 'unknown') {
+        switch($messageType) {
+            case 'add':
+                return "Thank you for subscribing to notifications!"
+                break;
+            case 'remove':
+                return "The number you texted from will no longer receive notifications. 
+            To start receiving notifications again, please text 'add'."
+                break;
+            default:
+                return "I'm sorry, that's not an option I recognize. 
+            Please, let me know if I should 'add' or 'remove' this number from notifications."
+                break;
+        }
     }
 }
