@@ -20,7 +20,7 @@ class SubscribersControllerTest extends TestCase
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());
-        $this->assertContains('Thanks', strval($twilioResponse->Message));
+        $this->assertContains('Please,', strval($twilioResponse->Message));
         $this->assertCount(1, Subscriber::all());
     }
 
@@ -36,7 +36,7 @@ class SubscribersControllerTest extends TestCase
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());
-        $this->assertContains('subscribed', strval($twilioResponse->Message));
+        $this->assertContains('subscribing', strval($twilioResponse->Message));
         $this->assertCount(1, Subscriber::all());
     }
 
@@ -52,7 +52,7 @@ class SubscribersControllerTest extends TestCase
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());
-        $this->assertContains('unsubscribed', strval($twilioResponse->Message));
+        $this->assertContains('again,', strval($twilioResponse->Message));
         $this->assertCount(1, Subscriber::all());
     }
 
@@ -68,7 +68,7 @@ class SubscribersControllerTest extends TestCase
         );
 
         $twilioResponse = new SimpleXMLElement($response->getContent());
-        $this->assertContains('Sorry', strval($twilioResponse->Message));
+        $this->assertContains('sorry', strval($twilioResponse->Message));
         $this->assertCount(1, Subscriber::all());
     }
 
