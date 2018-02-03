@@ -60,7 +60,7 @@ class SubscribersController extends Controller
         $subscriber->save();
 
         return $isSubscribed
-            ? $this->messageText('add');
+            ? $this->messageText('add')
             : $this->messageText('remove');
     }
 
