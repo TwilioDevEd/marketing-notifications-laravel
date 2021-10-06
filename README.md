@@ -31,14 +31,14 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 2. Clone this repository and `cd` into it.
 
    ```bash
-   $ git clone git@github.com:TwilioDevEd/marketing-notifications-laravel.git
-   $ cd marketing-notifications-laravel
+   git clone git@github.com:TwilioDevEd/marketing-notifications-laravel.git
+   cd marketing-notifications-laravel
    ```
 
 3. Install the application's dependencies with [Composer](https://getcomposer.org/).
 
    ```bash
-   $ composer install
+   composer install
    ```
 
 4. The application uses PostgreSQL as the persistence layer. If you don't have it already, you should install it. The easiest way is by using [Postgres.app](http://postgresapp.com/).
@@ -46,13 +46,13 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 5. Create a database.
 
    ```bash
-   $ createdb marketing_notifications
+   createdb marketing_notifications
    ```
 
 6. Copy the sample configuration file and edit it to _match your configuration_.
 
    ```bash
-   $ cp .env.example .env
+   cp .env.example .env
    ```
 
   You'll need to set `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER` in your .env file.
@@ -60,19 +60,19 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 7. Generate an `APP_KEY`.
 
    ```bash
-   $ php artisan key:generate
+   php artisan key:generate
    ```
 
 8. Run the migrations.
 
    ```bash
-   $ php artisan migrate
+   php artisan migrate
    ```
 
 9. Run the application using Artisan.
 
    ```bash
-   $ php artisan serve
+   php artisan serve
    ```
 
 10. Check it out at [http://localhost:8000](http://localhost:8000)
@@ -82,19 +82,19 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 1. Create a database.
 
    ```bash
-   $ createdb marketing_notifications_test
+   createdb marketing_notifications_test
    ```
 
 2. Run the database migrations for the test database.
 
    ```bash
-   $ APP_ENV=testing php artisan migrate
+   APP_ENV=testing php artisan migrate
    ```
 
 3. Run at the top-level directory.
 
    ```bash
-   $ phpunit
+   phpunit
    ```
 
 ## Meta
