@@ -14,7 +14,7 @@ Use Twilio to create sms notifications to keep your subscribers in the loop.
 
    Remember that the number where you change the _SMS webhook_ must be the same one you set on the `TWILIO_PHONE_NUMBER` environment variable.
 
-   ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
+   [Learn how to configure a Twilio phone number for Programmable SMS](https://support.twilio.com/hc/en-us/articles/223136047-Configure-a-Twilio-Phone-Number-to-Receive-and-Respond-to-Messages)
 
    To start using `ngrok` on our project you'll have execute to the following line in the _command prompt_.
 
